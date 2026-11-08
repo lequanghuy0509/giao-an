@@ -1,0 +1,22 @@
+{
+  "name": "kho-de-vat-ly",
+  "version": "1.0.0",
+  "description": "Kho đề Vật Lý - soạn giáo án, kho đề, trộn đề",
+  "main": "main.js",
+  "author": "Kho de Vat Ly",
+  "scripts": {
+    "start": "node prepare.js && electron .",
+    "dist": "node prepare.js && electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "vn.khodevatly.app",
+    "productName": "Kho de Vat Ly",
+    "files": ["main.js", "build-app/**"],
+    "win": { "target": ["nsis", "portable"], "icon": "build-app/icon-512.png" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
+  }
+}

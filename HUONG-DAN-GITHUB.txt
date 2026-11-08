@@ -1,0 +1,25 @@
+BUILD FILE .EXE (WINDOWS) BẰNG GITHUB ACTIONS
+
+Cần có sẵn trong GỐC kho GitHub (repo) các file của app: index.html, manifest.webmanifest, icon-192.png, icon-512.png
+(lấy từ file kho-de-vat-ly-app.zip trước đó, để ở thư mục gốc chứ không để trong thư mục con).
+
+BƯỚC 1. Thêm các file trong thư mục này vào GỐC repo:
+  package.json, main.js, prepare.js, .gitignore
+  và file .github/workflows/build-windows.yml
+  (Nếu kéo thả bị bỏ qua thư mục ẩn .github: trên GitHub bấm Add file > Create new file, gõ tên
+   .github/workflows/build-windows.yml rồi dán nội dung từ file build-windows.yml.txt)
+BƯỚC 2. Vào repo > tab Actions > chọn "Build Windows app" > Run workflow. Đợi vài phút.
+  (Nếu Actions đang tắt, GitHub sẽ hỏi bật lên.)
+BƯỚC 3. Mở lần chạy vừa xong > mục Artifacts > tải "kho-de-vat-ly-windows". Giải nén sẽ có:
+  - file "... Setup ... .exe": bộ cài đặt (bấm đúp để cài vào Windows)
+  - file "... .exe" dạng portable: chạy thẳng không cần cài
+CÁCH KHÁC: tạo tag phiên bản (ví dụ v1.0.0) thì file .exe còn được đưa lên mục Releases của repo.
+
+LƯU Ý
+- Windows có thể hiện cảnh báo "Windows protected your PC" vì file chưa có chữ ký số: bấm More info > Run anyway.
+- Quy trình này chưa được chạy thử. Nếu lần chạy báo lỗi, gửi lại nội dung lỗi (mục Actions, bước màu đỏ) để chỉnh.
+- Khi build, prepare.js tải sẵn các thư viện Word, PowerPoint, PDF về đóng gói để app dùng được khi mất mạng.
+  Nếu không tải được, app vẫn build và dùng thư viện qua mạng.
+- Dữ liệu của bản .exe lưu riêng trên máy đó, không chung với bản chạy trong trình duyệt hay điện thoại.
+  Dùng Cài đặt > Tải bản sao lưu và Khôi phục để chuyển dữ liệu.
+- Bản Android .apk không làm bằng cách này. Dùng pwabuilder.com với địa chỉ web của app.
