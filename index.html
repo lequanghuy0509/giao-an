@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kho đề Vật Lý</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b6b8a">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f3f6f8;--card:#fff;--ink:#16222b;--mut:#5a6b78;--line:#d5dde3;--acc:#0b6b8a;--on:#fff;--ok:#1a7f4b;--bad:#b3261e;--grid:rgba(11,107,138,.09);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10181e;--card:#17222a;--ink:#e6edf2;--mut:#98a9b5;--line:#2a3944;--acc:#4cb7d6;--on:#06222c;--ok:#5cc98d;--bad:#ff8a80;--grid:rgba(76,183,214,.1);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10181e;--card:#17222a;--ink:#e6edf2;--mut:#98a9b5;--line:#2a3944;--acc:#4cb7d6;--on:#06222c;--ok:#5cc98d;--bad:#ff8a80;--grid:rgba(76,183,214,.1);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+[hidden]{display:none!important}
+.top{padding:28px 20px 22px;border-bottom:1px solid var(--line);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:22px 22px}
+.top>div,.wrap{max-width:860px;margin:0 auto}
+h1{margin:0;font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.15;font-weight:700}
+.top p{margin:6px 0 0;color:var(--mut)}
+.wrap{padding:16px 20px 56px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);font:inherit;font-weight:500;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--ink);border-color:var(--acc);font-weight:700}
+.msg{min-height:1.5em;margin:0 0 8px;font-size:.92rem;color:var(--ok)}.msg.err{color:var(--bad)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.bar .sp{flex:1}
+.btn{font:inherit;font-weight:500;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:6px;cursor:pointer}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:var(--on);font-weight:700}
+.btn.sm{padding:4px 10px;font-size:.85rem}.btn.del{color:var(--bad)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.tabs button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:7px 10px;max-width:100%}
+textarea{width:100%}
+.q{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin-bottom:10px}
+.q p{margin:0 0 6px;font-weight:500;white-space:pre-line}
+.q ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px 16px;color:var(--mut)}
+.q li.ok{color:var(--ok);font-weight:700}
+.q .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;font-size:.85rem;color:var(--mut)}
+.q .meta .sp{flex:1}
+.empty{border:1px dashed var(--line);border-radius:6px;padding:24px;text-align:center;color:var(--mut)}
+.fld{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;font-weight:500}
+.fld input,.fld select{width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.scr{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--card)}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{font-weight:700}
+td input{width:64px}
+td small{color:var(--mut)}
+.pv{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-top:14px}
+.pv h2{margin:0 0 4px;font-size:1.15rem}
+.pv .ans{color:var(--mut);font-size:.88rem;word-break:break-word}
+dialog{border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:min(560px,94vw);padding:18px}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h2{margin:0 0 12px;font-size:1.2rem}
+dialog .row{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+.hint{color:var(--mut);font-size:.88rem;white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:0 0 10px}
+h3{margin:20px 0 6px;font-size:1.05rem}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div><h1>Kho đề Vật Lý</h1><p>Soạn câu hỏi, tạo đề theo ma trận, trộn mã đề và xuất ra Word.</p></div></header>
+<div class="wrap">
+<div class="tabs" role="tablist">
+<button data-t="kho" class="on">Kho đề</button><button data-t="mk">Tạo đề</button><button data-t="tr">Trộn đề</button><button data-t="pp">Chương trình</button><button data-t="ga">Giáo án</button><button data-t="cv">Chuyển đổi</button><button data-t="bk">Cài đặt</button>
+</div>
+<p id="msg" class="msg" role="status"></p>
+
+<section id="kho">
+<div class="bar">
+<select id="fm" aria-label="Lọc theo môn"><option value="">Mọi môn</option><option>Vật Lí</option><option>Công nghệ</option></select><select id="fk" aria-label="Lọc theo khối"><option value="">Mọi khối</option><option value="6">Lớp 6</option><option value="7">Lớp 7</option><option value="8">Lớp 8</option><option value="9">Lớp 9</option></select><select id="fb" aria-label="Lọc theo bài"></select>
+<select id="fl" aria-label="Lọc theo mức độ"><option value="">Mọi mức độ</option><option value="NB">Nhận biết</option><option value="TH">Thông hiểu</option><option value="VD">Vận dụng</option></select>
+<span id="cnt" class="sp"></span>
+<button class="btn" id="bdc">Xuất đề cương</button><button class="btn" id="bimp">Nhập từ văn bản</button>
+<button class="btn pri" id="badd">Thêm câu hỏi</button>
+</div>
+<div id="list"></div>
+</section>
+
+<section id="mk" hidden>
+<div class="two"><label class="fld">Môn<select id="xmon"><option>Vật Lí</option><option>Công nghệ</option></select></label><label class="fld">Khối lớp<select id="xlop"><option>6</option><option>7</option><option>8</option><option selected>9</option></select></label></div>
+<div class="two">
+<label class="fld">Tiêu đề đề kiểm tra<input id="xt" value="Kiểm tra giữa kì I"></label>
+<div class="two"><label class="fld">Thời gian (phút)<input id="xm" type="number" min="5" max="180" value="45"></label>
+<label class="fld">Số mã đề<input id="xn" type="number" min="1" max="8" value="4"></label></div>
+</div>
+<p class="hint">Chọn số câu cần lấy cho từng bài và mức độ. Số bên cạnh là số câu hiện có trong kho.</p>
+<div class="fld"><span>Loại câu hỏi đưa vào đề (chọn một hoặc nhiều loại)</span><div class="bar" id="xtys"><label><input type="checkbox" data-ty="mcq" checked> Nhiều lựa chọn</label><label><input type="checkbox" data-ty="tf" checked> Đúng/Sai</label><label><input type="checkbox" data-ty="sa" checked> Trả lời ngắn</label><label><input type="checkbox" data-ty="es" checked> Tự luận</label></div></div>
+<div class="scr" id="mx"></div>
+<div class="bar" style="margin-top:12px"><button class="btn pri" id="bgen">Tạo đề</button><button class="btn" id="bexp" hidden>Xuất file Word</button></div>
+<div id="pv"></div>
+</section>
+
+<section id="tr" hidden>
+<p class="hint">Trộn một đề đã soạn sẵn trong Word thành nhiều mã đề. Đáp án đúng cần tô chữ đỏ (trắc nghiệm nhiều lựa chọn) hoặc ghi trong bảng (Đúng/Sai) như file đề cương. Mã đề đầu giữ nguyên đề gốc.</p>
+<div class="bar"><label class="btn">Chọn file Word của đề (.docx)<input id="trf" type="file" accept=".docx" hidden></label></div>
+<p id="trinfo" class="hint" hidden></p>
+<div class="two"><label class="fld">Môn<select id="trmon"><option>Vật Lí</option><option>Công nghệ</option></select></label><label class="fld">Khối lớp<select id="trlop"><option>6</option><option>7</option><option>8</option><option selected>9</option></select></label></div>
+<div class="two"><label class="fld">Tiêu đề đề kiểm tra<input id="trt" value="Kiểm tra giữa kì I"></label><div class="two"><label class="fld">Thời gian (phút)<input id="trm" type="number" min="5" max="180" value="45"></label><label class="fld">Số mã đề<input id="trn" type="number" min="1" max="8" value="4"></label></div></div>
+<label class="fld" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="trq" checked style="width:auto">Trộn thứ tự câu hỏi</label>
+<label class="fld" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="tro" checked style="width:auto">Trộn thứ tự đáp án và các ý</label>
+<div class="bar"><button class="btn pri" id="trgo" disabled>Trộn và xuất file Word</button></div>
+</section>
+
+<section id="pp" hidden>
+<p class="hint">Danh sách bài theo sách giáo khoa dùng chung toàn quốc (Kết nối tri thức với cuộc sống) và phân phối chương trình của trường. Khi soạn giáo án, chọn bài ở đây và app tự điền tên bài, tuần, tiết. Lớp 9 môn Vật Lí đã có sẵn danh sách bài, các môn và khối khác cần thêm hoặc dán từ phân phối chương trình của trường.</p>
+<div class="two"><label class="fld">Môn<select id="pm"><option>Vật Lí</option><option>Công nghệ</option></select></label><label class="fld">Khối lớp<select id="pk"><option>6</option><option>7</option><option>8</option><option selected>9</option></select></label></div>
+<div id="plist"></div>
+<h3>Thêm bài</h3>
+<div class="two"><label class="fld">Bài<input id="pa"></label><div class="two"><label class="fld">Tuần<input id="pt"></label><label class="fld">Tiết<input id="pi"></label></div></div>
+<div class="bar"><button class="btn pri" id="padd">Thêm bài</button></div>
+<h3>Dán từ phân phối chương trình của trường</h3>
+<p class="hint">Mỗi dòng một bài, các cột cách nhau bằng dấu Tab (dán từ Excel hoặc bảng Word), dấu | hoặc dấu ;. Thứ tự cột: Bài, Tuần, Tiết.</p>
+<textarea id="pimp" rows="5"></textarea>
+<div class="bar" style="margin-top:8px"><button class="btn" id="pgo">Nhập danh sách</button></div>
+</section>
+
+<section id="ga" hidden>
+<div id="gl">
+<div class="bar"><select id="gfm" aria-label="Lọc theo môn"><option value="">Mọi môn</option><option>Vật Lí</option><option>Công nghệ</option></select><select id="gfl" aria-label="Lọc theo khối lớp"><option value="">Mọi khối</option><option value="6">Lớp 6</option><option value="7">Lớp 7</option><option value="8">Lớp 8</option><option value="9">Lớp 9</option></select><span class="sp" id="gcnt"></span><button class="btn pri" id="gnew">Soạn giáo án mới</button></div>
+<div id="glist"></div>
+</div>
+<div id="ge" hidden>
+<div class="bar"><button class="btn" id="gback">Về danh sách</button><span class="sp"></span><button class="btn" id="gppt">Xuất PowerPoint</button><button class="btn" id="gexp">Xuất file Word</button><button class="btn pri" id="gsave">Lưu giáo án</button></div>
+<div id="gf"></div>
+</div>
+</section>
+
+<section id="cv" hidden>
+<h3>Word sang PowerPoint</h3>
+<p class="hint">Chọn file Word (.docx). Tiêu đề (kiểu Heading, dòng in đậm ngắn, hoặc dòng bắt đầu bằng Bài, Hoạt động, I., 1.) thành tiêu đề slide, các dòng bên dưới thành gạch đầu dòng, mỗi slide tối đa 7 dòng. Hình ảnh và công thức trong Word không được chuyển.</p>
+<div class="bar"><label class="btn">Chọn file Word<input id="w2p" type="file" accept=".docx" hidden></label></div>
+<h3>PDF sang Word</h3>
+<p class="hint">Chỉ chuyển được phần chữ của file PDF có chữ chọn được. Bảng, hình, công thức và bố cục sẽ không được giữ. File PDF scan (ảnh chụp) không đọc được.</p>
+<div class="bar"><label class="btn">Chọn file PDF<input id="p2w" type="file" accept=".pdf,application/pdf" hidden></label></div>
+</section>
+
+<section id="bk" hidden>
+<label class="fld" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="aiOn" style="width:auto">Bật tính năng AI gợi ý khi soạn giáo án</label>
+<label class="fld">Cách dùng AI<select id="aiMode"><option value="auto">Tự động bằng Claude trong app (tính vào lượt dùng Claude của người bấm)</option><option value="copy">Sao chép lời nhắc rồi dán vào Claude hoặc Gemini</option><option value="gemini">Tự động bằng khóa Gemini miễn phí của cô</option></select></label>
+<label class="fld">Khóa Gemini API (lấy miễn phí ở aistudio.google.com, chỉ lưu trên máy này)<input id="gkey" type="password" autocomplete="off"></label>
+<label class="fld">Tên mô hình Gemini<input id="gmodel" value="gemini-3.5-flash-lite"></label>
+<p class="hint">Nội dung do AI viết chỉ là bản nháp, cần đọc lại và sửa trước khi dùng. Kho đề và giáo án lưu ngay trong trình duyệt này. Tải bản sao lưu để giữ an toàn hoặc chuyển sang máy khác.</p>
+<div class="bar"><button class="btn pri" id="bsave">Tải bản sao lưu</button>
+<label class="btn">Khôi phục từ file<input id="frest" type="file" accept=".json,application/json" hidden></label>
+<button class="btn del" id="bclr">Xóa toàn bộ kho</button></div>
+</section>
+</div>
+
+<dialog id="dq">
+<h2 id="dqt">Câu hỏi</h2>
+<div class="two"><label class="fld">Bài<input id="eb" list="bl"></label>
+<label class="fld">Mức độ<select id="em"><option value="NB">Nhận biết</option><option value="TH">Thông hiểu</option><option value="VD">Vận dụng</option></select></label></div>
+<datalist id="bl"></datalist>
+<div class="two"><label class="fld">Môn<select id="emon"><option>Vật Lí</option><option>Công nghệ</option></select></label><label class="fld">Khối lớp<select id="ekh"><option>6</option><option>7</option><option>8</option><option>9</option></select></label></div>
+<label class="fld">Loại câu hỏi<select id="et"><option value="mcq">Trắc nghiệm nhiều lựa chọn</option><option value="tf">Đúng/Sai</option><option value="sa">Trả lời ngắn</option><option value="es">Tự luận</option></select></label>
+<label class="fld">Nội dung câu hỏi<textarea id="eq" rows="3"></textarea></label>
+<div id="gm"><div id="eo"></div>
+<label class="fld">Đáp án đúng<select id="ea"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select></label></div>
+<label class="fld" id="gt">Các ý (mỗi dòng một ý, cuối dòng ghi [Đ] hoặc [S])<textarea id="etf" rows="5" placeholder="a) Nội dung ý [Đ]"></textarea></label>
+<label class="fld" id="gs">Đáp số<input id="esk"></label>
+<div class="row"><button class="btn" id="dqc">Hủy</button><button class="btn pri" id="dqs">Lưu câu hỏi</button></div>
+</dialog>
+
+<dialog id="di">
+<h2>Nhập câu hỏi từ văn bản</h2>
+<p class="hint">Bài: Áp suất
+Mức: NB
+Câu: Công thức tính áp suất là
+A. p = F/S
+B. p = F·S
+C. p = S/F
+D. p = F + S
+Đáp án: A
+
+Dòng Bài và Mức áp dụng cho các câu phía sau cho đến khi đổi. Mức là NB, TH hoặc VD.</p>
+<div class="two"><label class="fld">Môn<select id="im"><option>Vật Lí</option><option>Công nghệ</option></select></label><label class="fld">Khối lớp<select id="ik"><option>6</option><option>7</option><option>8</option><option selected>9</option></select></label></div>
+<div class="bar"><label class="btn">Chọn file Word (.docx)<input id="fw" type="file" accept=".docx" hidden></label></div>
+<p id="dm" class="hint" hidden></p>
+<textarea id="it" rows="9" placeholder="Dán nội dung vào đây"></textarea>
+<div class="row"><button class="btn" id="dic">Hủy</button><button class="btn pri" id="dis">Nhập vào kho</button></div>
+</dialog>
+
+<dialog id="dai">
+<h2>Nhờ AI viết nháp</h2>
+<p class="hint">Bước 1: sao chép lời nhắc bên dưới. Bước 2: dán vào Claude hoặc Gemini (bản chat miễn phí). Bước 3: sao chép câu trả lời, dán vào ô thứ hai rồi bấm Chèn vào ô.</p>
+<textarea id="aip" rows="6" readonly></textarea>
+<div class="bar" style="margin:8px 0"><button class="btn" id="aicp">Sao chép lời nhắc</button></div>
+<textarea id="air" rows="6" placeholder="Dán câu trả lời của AI vào đây"></textarea>
+<div class="row"><button class="btn" id="aix">Đóng</button><button class="btn pri" id="aiin">Chèn vào ô</button></div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+const LV={NB:'Nhận biết',TH:'Thông hiểu',VD:'Vận dụng'},L4=['A','B','C','D'],ABC='abcdefgh',ORD=['mcq','tf','sa','es'];
+const TY={mcq:'Nhiều lựa chọn',tf:'Đúng/Sai',sa:'Trả lời ngắn',es:'Tự luận'},PH={mcq:'I.',tf:'II.',sa:'III.'},SEC={mcq:'PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN',tf:'PHẦN II. TRẮC NGHIỆM ĐÚNG/SAI',sa:'PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN',es:'PHẦN IV. TỰ LUẬN'};
+const num=(c,i)=>c.qs.slice(0,i).filter(y=>y.t===c.qs[i].t).length+1;
+const ans=x=>x.t==='tf'?x.items.map(o=>o.ok?'Đ':'S').join(''):x.t==='sa'?(x.key||'?'):x.t==='mcq'?L4[x.ans]:'';
+const qh=(x,n)=>`<p><b>Câu ${n}.</b> ${esc(x.q)}`+(x.t==='tf'?'<br>'+x.items.map((o,j)=>`${ABC[j]}) ${esc(o.t)}`).join('<br>'):x.t==='mcq'?'<br>'+x.opts.map((o,j)=>`${L4[j]}. ${esc(o)}`).join(' &nbsp; '):'')+'</p>';
+const bodyOf=x=>{const t=x.type||'mcq';return t==='es'?'':'<ol>'+(t==='tf'?x.items.map((o,i)=>`<li class="${o.ok?'ok':''}">${ABC[i]}) ${esc(o.t)} (${o.ok?'Đúng':'Sai'})</li>`):t==='sa'?[`<li class="ok">Đáp số: ${esc(x.key||'chưa có')}</li>`]:x.opts.map((o,i)=>`<li class="${i===x.ans?'ok':''}">${L4[i]}. ${esc(o)}</li>`)).join('')+'</ol>'};
+const showT=()=>{const t=$('#et').value;$('#gm').hidden=t!=='mcq';$('#gt').hidden=t!=='tf';$('#gs').hidden=t!=='sa'};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let Q=[],MX={},EX=null,editId=null;
+try{Q=JSON.parse(localStorage.getItem('vl_q')||'[]')}catch(e){}
+Q.forEach(x=>{if(!x.mon)x.mon='Vật Lí';if(!x.lop)x.lop='9'});
+const store=()=>{try{localStorage.setItem('vl_q',JSON.stringify(Q))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const bais=(m,k)=>[...new Set(Q.filter(x=>(!m||x.mon===m)&&(!k||x.lop===k)).map(x=>x.bai))];
+const filt=()=>Q.filter(x=>(!$('#fm').value||x.mon===$('#fm').value)&&(!$('#fk').value||x.lop===$('#fk').value)&&(!$('#fb').value||x.bai===$('#fb').value)&&(!$('#fl').value||x.muc===$('#fl').value));
+function say(t,err){const m=$('#msg');m.textContent=t||'';m.className='msg'+(err?' err':'')}
+
+const SAMPLE=[
+['Lực','NB','Đơn vị đo lực trong hệ SI là gì?',['Niutơn (N)','Kilôgam (kg)','Mét (m)','Giây (s)'],0],
+['Lực','TH','Một vật đứng yên chịu tác dụng của hai lực cân bằng. Vật sẽ như thế nào?',['Tiếp tục đứng yên','Chuyển động nhanh dần','Chuyển động chậm dần','Đổi hướng liên tục'],0],
+['Lực','VD','Một vật có khối lượng 2 kg thì trọng lượng xấp xỉ bao nhiêu (lấy g = 10 N/kg)?',['2 N','20 N','0,2 N','200 N'],1],
+['Áp suất','NB','Công thức tính áp suất là',['p = F/S','p = F·S','p = S/F','p = F + S'],0],
+['Áp suất','TH','Khi áp lực không đổi mà diện tích bị ép giảm thì áp suất',['Tăng','Giảm','Không đổi','Bằng không'],0],
+['Điện học','NB','Đơn vị của cường độ dòng điện là',['Ampe (A)','Vôn (V)','Ôm (Ω)','Oát (W)'],0]
+];
+
+/* ---- Kho đề ---- */
+function renderBank(){
+ const fb=$('#fb'),cur=fb.value,BL=bais($('#fm').value,$('#fk').value);
+ fb.innerHTML='<option value="">Mọi bài</option>'+BL.map(b=>`<option>${esc(b)}</option>`).join('');
+ fb.value=BL.includes(cur)?cur:'';
+ $('#bl').innerHTML=bais().map(b=>`<option value="${esc(b)}">`).join('');
+ const f=filt();
+ $('#cnt').textContent=Q.length?`${f.length}/${Q.length} câu`:'';
+ $('#list').innerHTML=!Q.length?'<div class="empty"><p>Kho đề đang trống. Thêm từng câu, nhập từ văn bản, hoặc thử với vài câu mẫu.</p><button class="btn" id="bsmp">Thêm 6 câu mẫu</button></div>'
+ :f.map(x=>`<div class="q"><p>${esc(x.q)}</p>${bodyOf(x)}
+ <div class="meta"><span>${esc(x.mon||'')}${x.lop?' lớp '+x.lop:''} · ${esc(x.bai)} · ${LV[x.muc]} · ${TY[x.type||'mcq']}</span><span class="sp"></span><button class="btn sm" data-a="e" data-id="${x.id}">Sửa</button><button class="btn sm del" data-a="d" data-id="${x.id}">Xóa</button></div></div>`).join('')||'<div class="empty">Không có câu nào khớp bộ lọc.</div>';
+}
+$('#list').addEventListener('click',e=>{
+ if(e.target.id==='bsmp'){SAMPLE.forEach(s=>Q.push({id:uid(),mon:$('#fm').value||'Vật Lí',lop:$('#fk').value||'9',bai:s[0],muc:s[1],q:s[2],opts:s[3],ans:s[4]}));store();renderBank();say('Đã thêm 6 câu mẫu.');return}
+ const id=e.target.dataset.id,a=e.target.dataset.a;if(!id)return;
+ if(a==='d'){Q=Q.filter(x=>x.id!==id);store();renderBank();say('Đã xóa câu hỏi.')}
+ if(a==='e')openEdit(Q.find(x=>x.id===id));
+});
+$('#fm').onchange=$('#fk').onchange=$('#fb').onchange=$('#fl').onchange=renderBank;
+
+$('#eo').innerHTML=L4.map((l,i)=>`<label class="fld">Đáp án ${l}<input id="o${i}"></label>`).join('');
+function openEdit(x){
+ editId=x?x.id:null;$('#dqt').textContent=x?'Sửa câu hỏi':'Thêm câu hỏi';
+ $('#eb').value=x?x.bai:($('#fb').value||'');$('#emon').value=x?x.mon:($('#fm').value||'Vật Lí');$('#ekh').value=x?x.lop:($('#fk').value||'9');$('#em').value=x?x.muc:'NB';$('#eq').value=x?x.q:'';
+ L4.forEach((_,i)=>$('#o'+i).value=x&&x.opts?x.opts[i]:'');$('#ea').value=x&&x.opts?x.ans:0;$('#et').value=x?x.type||'mcq':'mcq';$('#etf').value=x&&x.items?x.items.map((o,i)=>`${ABC[i]}) ${o.t} [${o.ok?'Đ':'S'}]`).join('\n'):'';$('#esk').value=x&&x.key||'';showT();$('#dq').showModal();
+}
+$('#et').onchange=showT;
+$('#badd').onclick=()=>openEdit(null);
+$('#dqc').onclick=()=>$('#dq').close();
+$('#dqs').onclick=()=>{
+ const t=$('#et').value,o={id:editId||uid(),type:t,mon:$('#emon').value,lop:$('#ekh').value,bai:$('#eb').value.trim(),muc:$('#em').value,q:$('#eq').value.trim()};
+ if(t==='mcq'){o.opts=L4.map((_,i)=>$('#o'+i).value.trim());o.ans=+$('#ea').value}
+ if(t==='tf')o.items=$('#etf').value.split('\n').map(s=>s.trim().match(/^[a-h]\)\s*(.+?)\s*\[(Đ|S)\]$/i)).filter(Boolean).map(m=>({t:m[1],ok:m[2].toUpperCase()==='Đ'}));
+ if(t==='sa')o.key=$('#esk').value.trim();
+ if(!o.bai||!o.q||(t==='mcq'&&o.opts.some(v=>!v))||(t==='tf'&&o.items.length<2)){say('Cần điền đủ bài, nội dung và đáp án (hoặc các ý) theo loại câu hỏi.',1);return}
+ const i=Q.findIndex(x=>x.id===o.id);i<0?Q.push(o):Q[i]=o;store();$('#dq').close();renderBank();say('Đã lưu câu hỏi.');
+};
+
+function parse(t){
+ let bai='Chưa phân bài',muc='NB',ty='mcq',cur=null;const out=[];
+ const push=()=>{if(cur&&cur.q&&(cur.type==='tf'?cur.items.length>1:cur.type==='sa'||cur.type==='es'||(cur.opts.every(Boolean)&&cur.ans>=0)))out.push(cur);cur=null};
+ for(const raw of t.split(/\r?\n/)){
+  const l=raw.trim();if(!l)continue;let m;
+  if(m=l.match(/^lo[ạa]i\s*:\s*(\w+)/i)){push();ty={TN:'mcq',DS:'tf',TLN:'sa',TL:'es'}[m[1].toUpperCase()]||ty;continue}
+  if(m=l.match(/^b[àa]i\s*:\s*(.+)/i)){push();bai=m[1].trim();continue}
+  if(m=l.match(/^m[ứu]c\s*:\s*(.+)/i)){push();const v=m[1].trim().toUpperCase();if(LV[v])muc=v;continue}
+  if(m=l.match(/^c[âa]u\s*\d*\s*[:.]\s*(.+)/i)){push();const b={id:uid(),mon:$('#im').value,lop:$('#ik').value,bai,muc,q:m[1].trim(),type:ty};cur=ty==='tf'?{...b,items:[]}:ty==='sa'?{...b,key:''}:ty==='es'?b:{...b,opts:['','','',''],ans:-1};continue}
+  if(!cur)continue;
+  if(cur.type==='tf'&&(m=l.match(/^([a-h])\)\s*(.+?)\s*\[(Đ|S)\]\s*$/i))){cur.items.push({t:m[2],ok:m[3].toUpperCase()==='Đ'});continue}
+  if(cur.type==='sa'&&(m=l.match(/^đ[áa]p\s*s[ốo]\s*:\s*(.+)/i))){cur.key=m[1].trim();continue}
+  if(!cur.opts){cur.q+=(cur.type==='es'?'\n':' ')+l;continue}
+  if(m=l.match(/^([A-D])\s*[.)]\s*(.+)/)){cur.opts[L4.indexOf(m[1])]=m[2].trim();continue}
+  if(m=l.match(/^đ[áa]p\s*[áa]n\s*:\s*([A-D])/i)){cur.ans=L4.indexOf(m[1].toUpperCase());continue}
+  if(/^đ[áa]p\s*[áa]n/i.test(l))continue;
+  cur.q+=' '+l;
+ }
+ push();return out;
+}
+$('#bimp').onclick=()=>$('#di').showModal();
+$('#dic').onclick=()=>$('#di').close();
+$('#dis').onclick=()=>{
+ const tot=($('#it').value.match(/^\s*c[âa]u\s*\d*\s*[:.]/gim)||[]).length,r=parse($('#it').value);
+ if(!r.length){say('Không đọc được câu nào. Mỗi câu cần dòng Câu, đủ bốn đáp án A đến D và dòng Đáp án.',1);return}
+ Q.push(...r);store();$('#it').value='';$('#dm').hidden=true;$('#di').close();renderBank();say(`Đã nhập ${r.length} câu vào kho`+(tot>r.length?`, bỏ qua ${tot-r.length} câu thiếu đáp án hoặc thiếu đủ bốn đáp án A đến D.`:'.'));
+};
+
+/* ---- Nhập từ Word ---- */
+async function docxParas(f){
+ const z=await JSZip.loadAsync(await f.arrayBuffer()),W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+ const d=new DOMParser().parseFromString(await z.file('word/document.xml').async('string'),'application/xml');
+ const isRed=h=>/^[0-9A-F]{6}$/.test(h)&&parseInt(h.slice(0,2),16)>=192&&parseInt(h.slice(2,4),16)<96&&parseInt(h.slice(4,6),16)<96;
+ return [...d.getElementsByTagNameNS(W,'body')[0].children].filter(p=>p.localName==='p'||p.localName==='tbl').map(p=>p.localName==='tbl'?{num:false,runs:[],tbl:[...p.getElementsByTagNameNS(W,'tr')].map(tr=>[...tr.getElementsByTagNameNS(W,'tc')].map(tc=>[...tc.getElementsByTagNameNS(W,'t')].map(t=>t.textContent).join('').trim()))}:({num:[...p.getElementsByTagNameNS(W,'numPr')].some(n=>{const i=n.getElementsByTagNameNS(W,'numId')[0];return !!i&&i.getAttributeNS(W,'val')!=='0'}),runs:[...p.getElementsByTagNameNS(W,'r')].map(r=>{
+  const c=r.getElementsByTagNameNS(W,'color')[0];
+  return{t:[...r.childNodes].map(n=>n.localName==='t'?n.textContent:n.localName==='tab'?' ':'').join(''),red:c?isRed((c.getAttributeNS(W,'val')||'').toUpperCase()):false};
+ })}));
+}
+/*START readMcq*/
+function readMcq(paras){
+ let S='',R=[],last=-1;
+ for(const p of paras){
+  const T=p.runs.map(r=>r.t).join('').toUpperCase();
+  if((T.includes('ĐÚNG')&&T.includes('SAI'))||T.trim().startsWith('II.'))break;
+  const tx=p.runs.map(r=>r.t).join(''),runs=p.runs.slice();
+  if(/Câu\s*\d+\s*[:.]/.test(tx))last=-1;
+  if(p.num&&!tx.trim().startsWith('Câu')&&last<3){last++;runs.unshift({t:L4[last]+'. ',red:false})}
+  for(const m of tx.matchAll(/(^|\s)([A-D])\s*\./g))last=Math.max(last,L4.indexOf(m[2]));
+  for(const r of runs)for(let i=0;i<r.t.length;i++){S+=r.t[i];R.push(r.red)}
+  S+='\n';R.push(false);
+ }
+ const cl=s=>s.split(/\s+/).join(' ').trim(),st=[...S.matchAll(/Câu\s*(\d+)\s*[:.]/g)],out=[];let miss=0;
+ st.forEach((m,k)=>{
+  const a=m.index+m[0].length,seg=S.slice(a,k+1<st.length?st[k+1].index:S.length);
+  const find=(l,from)=>{const r=new RegExp('(^|\\s)'+l+'\\s*\\.','g');r.lastIndex=from;const x=r.exec(seg);return x?{i:x.index+x[1].length,e:r.lastIndex}:null};
+  let mk=null;
+  for(let f=0;;){const A=find('A',f);if(!A)break;const B=find('B',A.e),C=B&&find('C',B.e),D=C&&find('D',C.e);if(D){mk=[A,B,C,D];break}f=A.e}
+  if(!mk)return;
+  const c=mk.map((o,i)=>{let n=0;const end=i<3?mk[i+1].i:seg.length;for(let j=o.i;j<end;j++)if(R[a+j]&&seg[j].trim())n++;return n});
+  const w=c.map((n,i)=>n>0?i:-1).filter(i=>i>=0),ans=w.length===1?w[0]:-1;
+  if(ans<0)miss++;
+  out.push(`Câu ${m[1]}: ${cl(seg.slice(0,mk[0].i))}\n`+mk.map((o,i)=>`${L4[i]}. ${cl(seg.slice(o.e,i<3?mk[i+1].i:seg.length))}`).join('\n')+`\nĐáp án: ${ans<0?'?':L4[ans]}`);
+ });
+ return{text:out.join('\n\n'),n:out.length,miss};
+}
+/*END readMcq*/
+/*START readRest*/
+function readRest(paras){
+ const out=[],cl=s=>s.split(/\s+/).join(' ').trim();let sec='',cur=null,n=0;
+ const flush=()=>{
+  if(!cur)return;n++;
+  const q=cur.ty==='tf'&&cur.lines.length>1?cur.lines.slice(1).join(' '):cur.ty==='es'?cur.lines.join('\n'):cur.lines.join(' ');
+  out.push((cur.ty==='tf'?'Loại: DS':cur.ty==='sa'?'Loại: TLN':'Loại: TL')+'\nCâu '+cur.no+': '+q+(cur.ty==='tf'?cur.items.map((o,i)=>'\n'+'abcdefgh'[i]+') '+o.t+' ['+(o.ok?'Đ':'S')+']').join(''):''));cur=null;
+ };
+ for(const p of paras){
+  if(p.tbl){if(cur&&cur.ty==='tf')for(const r of p.tbl){if(r.length<3||!r[0]||/^NỘI DUNG/i.test(r[0]))continue;if(r[1]||r[2])cur.items.push({t:r[0].replace(/^[a-h]\)\s*/i,''),ok:!!r[1]})}continue}
+  const t=cl(p.runs.map(r=>r.t).join(''));if(!t)continue;
+  const T=t.toUpperCase();
+  if(/^(II|III|IV|PHẦN)/.test(T)){flush();sec=T.includes('TRẢ LỜI NGẮN')?'sa':T.includes('TỰ LUẬN')?'es':T.includes('ĐÚNG')?'tf':'';continue}
+  const m=t.match(/^Câu\s*(\d+)\s*[:.]\s*(.*)$/);
+  if(m&&sec){flush();cur={ty:sec,no:m[1],lines:m[2]?[m[2]]:[],items:[]};continue}
+  if(cur)cur.lines.push(t);
+ }
+ flush();return{text:out.join('\n\n'),n};
+}
+/*END readRest*/
+$('#fw').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ const dm=$('#dm');dm.hidden=false;
+ if(!window.JSZip){dm.textContent='Chưa tải được thư viện đọc Word. Hãy kiểm tra kết nối mạng rồi tải lại trang.';return}
+ try{
+  const ps=await docxParas(f),r=readMcq(ps),x=readRest(ps);
+  $('#it').value='Bài: Chưa phân bài\nMức: TH\n\n'+r.text+'\n\n'+x.text;
+  dm.textContent=`Đọc được ${r.n} câu trắc nghiệm nhiều lựa chọn (đáp án đúng là chữ màu đỏ).`+(r.miss?` Có ${r.miss} câu chưa xác định được đáp án, hãy sửa dòng Đáp án: ? thành A, B, C hoặc D.`:'')+` Đọc thêm ${x.n} câu Đúng/Sai, Trả lời ngắn và Tự luận (câu Trả lời ngắn cần bổ sung dòng Đáp số). Sửa dòng Bài và Mức ở đầu nếu cần, rồi bấm Nhập vào kho.`;
+ }catch(_){dm.textContent='Không đọc được file Word này.'}
+};
+
+/* ---- Tạo đề ---- */
+function renderMx(){
+ const m=$('#xmon').value,k=$('#xlop').value,bs=bais(m,k),tys=ORD.filter(t=>$('#xtys [data-ty='+t+']').checked);
+ if(!bs.length){$('#mx').innerHTML='<div class="empty">Chưa có câu hỏi nào cho môn và khối đã chọn. Thêm câu hỏi ở tab Kho đề trước.</div>';return}
+ if(!tys.length){$('#mx').innerHTML='<div class="empty">Hãy chọn ít nhất một loại câu hỏi.</div>';return}
+ $('#mx').innerHTML=tys.map(ty=>`<h3>${TY[ty]}</h3><table><tr><th>Bài</th>${Object.values(LV).map(v=>`<th>${v}</th>`).join('')}</tr>`+bs.map(b=>`<tr><td>${esc(b)}</td>`+Object.keys(LV).map(l=>{
+  const n=Q.filter(x=>x.bai===b&&x.muc===l&&(x.type||'mcq')===ty&&x.mon===m&&x.lop===k).length,key=ty+'|'+b+'|'+l;
+  return `<td><input type="number" min="0" max="${n}" ${n?'':'disabled'} data-t="${ty}" data-b="${esc(b)}" data-l="${l}" value="${Math.min(MX[key]||0,n)}"> <small>/${n}</small></td>`}).join('')+'</tr>').join('')+'</table>').join('');
+}
+$('#xtys').onchange=renderMx;
+$('#xmon').onchange=$('#xlop').onchange=()=>{MX={};renderMx()};
+$('#mx').addEventListener('input',e=>{if(e.target.dataset.l)MX[e.target.dataset.t+'|'+e.target.dataset.b+'|'+e.target.dataset.l]=+e.target.value||0});
+$('#bgen').onclick=()=>{
+ const picked=[];let bad=false;
+ Object.entries(MX).forEach(([key,k])=>{const [ty,b,l]=key.split('|');if(!$('#xtys [data-ty='+ty+']').checked)return;
+  if(!k)return;
+  const pool=Q.filter(x=>x.bai===b&&x.muc===l&&(x.type||'mcq')===ty&&x.mon===$('#xmon').value&&x.lop===$('#xlop').value);
+  if(k>pool.length)bad=true;picked.push(...shuf(pool).slice(0,k));
+ });
+ if(bad){say('Có ô lấy nhiều câu hơn số câu trong kho. Hãy giảm số câu.',1);return}
+ if(!picked.length){say('Chưa chọn số câu nào. Nhập số câu vào bảng ma trận.',1);return}
+ const n=Math.max(1,Math.min(8,+$('#xn').value||1)),base=shuf(picked);
+ const codes=[...Array(n)].map((_,c)=>({code:101+c,qs:ORD.flatMap(ty=>(c?shuf(base):base).filter(x=>(x.type||'mcq')===ty)).map(x=>{if(x.type==='tf')return{t:'tf',q:x.q,items:shuf(x.items)};if(x.type==='sa')return{t:'sa',q:x.q,key:x.key||''};if(x.type==='es')return{t:'es',q:x.q};
+  const o=shuf(x.opts.map((t,i)=>({t,ok:i===x.ans})));return{t:'mcq',q:x.q,opts:o.map(z=>z.t),ans:o.findIndex(z=>z.ok)}})}));
+ EX={mon:$('#xmon').value,lop:$('#xlop').value,title:$('#xt').value.trim()||'Đề kiểm tra',time:+$('#xm').value||45,codes};
+ say(`Đã tạo ${n} mã đề, mỗi đề ${picked.length} câu.`);renderPv();
+};
+function renderPv(){
+ const c=EX.codes[0];$('#bexp').hidden=false;
+ $('#pv').innerHTML=`<div class="pv"><h2>Xem trước mã đề ${c.code}</h2>`+c.qs.map((x,i)=>qh(x,num(c,i))).join('')+
+ '<h2>Đáp án</h2>'+EX.codes.map(k=>`<p class="ans"><b>Mã ${k.code}:</b> ${k.qs.filter(x=>x.t!=='es').map(x=>`${PH[x.t]}${num(k,k.qs.indexOf(x))}=${ans(x)}`).join(' ')}</p>`).join('')+'</div>';
+}
+$('#bexp').onclick=async()=>{
+ const d=window.docx;if(!d){say('Chưa tải được thư viện Word. Hãy kiểm tra kết nối mạng rồi tải lại trang.',1);return}
+ const dl=await getDl();
+ if(!dl){say('Chế độ xem này không hỗ trợ lưu file. Hãy mở trang trong claude.ai.',1);return}
+ const {Document,Paragraph,TextRun,Table,TableRow,TableCell,WidthType,AlignmentType,PageBreak,Packer}=d,C=AlignmentType.CENTER;
+ const P=(t,o={})=>new Paragraph({alignment:o.al,spacing:{after:o.after==null?80:o.after},indent:o.ind,children:[new TextRun({text:t,bold:!!o.b})]});
+ const kids=[];
+ EX.codes.forEach((c,ci)=>{
+  if(ci)kids.push(new Paragraph({children:[new PageBreak()]}));
+  kids.push(P(EX.title.toUpperCase(),{b:1,al:C}),P(`Môn: ${EX.mon}   Lớp: ${EX.lop}   Thời gian: ${EX.time} phút   Mã đề ${c.code}`,{al:C}),P('Họ và tên: ................................................   Lớp: ..........',{after:240}));
+  c.qs.forEach((x,i)=>{
+   if(i===0||c.qs[i-1].t!==x.t)kids.push(P(SEC[x.t],{b:1,after:80}));
+   const ls=x.q.split('\n');
+   kids.push(new Paragraph({spacing:{before:120,after:60},children:[new TextRun({text:`Câu ${num(c,i)}. `,bold:true}),new TextRun(ls[0])]}));ls.slice(1).forEach(s=>kids.push(P(s,{ind:{left:360},after:20})));
+   (x.opts||[]).forEach((o,j)=>kids.push(P(`${L4[j]}. ${o}`,{ind:{left:360},after:20})));(x.items||[]).forEach((o,j)=>kids.push(P(`${ABC[j]}) ${o.t}`,{ind:{left:360},after:20})));
+  });
+ });
+ const cell=(t,b)=>new TableCell({children:[P(String(t),{al:C,after:0,b})]});
+ const rows=[new TableRow({children:[cell('Câu',1),...EX.codes.map(c=>cell('Mã '+c.code,1))]}),
+  ...EX.codes[0].qs.map((x,i)=>x.t==='es'?null:new TableRow({children:[cell(PH[x.t]+num(EX.codes[0],i)),...EX.codes.map(c=>cell(ans(c.qs[i])))]})).filter(Boolean)];
+ kids.push(new Paragraph({children:[new PageBreak()]}),P('ĐÁP ÁN',{b:1,al:C,after:160}),new Table({width:{size:100,type:WidthType.PERCENTAGE},rows}));
+ try{
+  const doc=new Document({styles:{default:{document:{run:{font:'Times New Roman',size:26}}}},sections:[{children:kids}]});
+  await dl.save({filename:'De-kiem-tra-Vat-Ly.docx',data:await Packer.toBlob(doc)});
+  say('Đã lưu file Word.');
+ }catch(e){if(e&&e.code==='declined')return;say('Không lưu được file. Hãy thử lại.',1)}
+};
+
+/* ---- Sao lưu ---- */
+async function getDl(){
+ if(window.claude)return await window.claude.use('downloads');
+ return{save:async({filename,data})=>{const b=data instanceof Blob?data:new Blob([data]),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}};
+}
+async function dlsave(name,data){
+ const dl=await getDl();
+ if(!dl){say('Chế độ xem này không hỗ trợ lưu file. Hãy mở trang trong claude.ai.',1);return}
+ try{await dl.save({filename:name,data});say('Đã lưu file.')}catch(e){if(!(e&&e.code==='declined'))say('Không lưu được file.',1)}
+}
+$('#bsave').onclick=()=>{if(!Q.length&&!GA.length){say('Chưa có gì để sao lưu.',1);return}dlsave('kho-de-vat-ly.json',JSON.stringify({q:Q,ga:GA,pp:PP}))};
+$('#frest').onchange=e=>{
+ const f=e.target.files[0];if(!f)return;const r=new FileReader();
+ r.onload=()=>{try{
+  const J=JSON.parse(r.result),a=(Array.isArray(J)?J:J.q||[]).filter(x=>x&&x.q&&(x.type==='tf'?Array.isArray(x.items):x.type==='sa'||x.type==='es'||(Array.isArray(x.opts)&&x.opts.length===4&&x.ans>=0&&x.ans<4)));
+  const have=new Set(Q.map(x=>x.id));const add=a.filter(x=>!have.has(x.id)).map(x=>({...x,mon:x.mon||'Vật Lí',lop:x.lop||'9',id:x.id||uid(),bai:String(x.bai||'Chưa phân bài'),muc:LV[x.muc]?x.muc:'NB',q:String(x.q)}));
+  const hg=new Set(GA.map(x=>x.id)),ag=(J.ga||[]).filter(x=>x&&x.title&&!hg.has(x.id));GA.push(...ag);gstore();const hp=new Set(PP.map(x=>x.id));PP.push(...(J.pp||[]).filter(x=>x&&x.bai&&!hp.has(x.id)));pstore();Q.push(...add);store();renderBank();say(`Đã khôi phục ${add.length} câu hỏi và ${ag.length} giáo án.`);
+ }catch(_){say('File không đúng định dạng sao lưu.',1)}e.target.value=''};
+ r.readAsText(f);
+};
+$('#bclr').onclick=()=>{if(!Q.length)return;if($('#bclr').dataset.s){Q=[];MX={};EX=null;$('#pv').innerHTML='';$('#bexp').hidden=true;store();renderBank();delete $('#bclr').dataset.s;$('#bclr').textContent='Xóa toàn bộ kho';say('Đã xóa toàn bộ kho.');return}
+ $('#bclr').dataset.s=1;$('#bclr').textContent='Bấm lần nữa để xác nhận xóa';say('Nên tải bản sao lưu trước khi xóa.',1)};
+
+/* ---- Trộn đề ---- */
+function buildCodes(base,n,sq,so,keep0){
+ return [...Array(n)].map((_,c)=>({code:101+c,qs:ORD.flatMap(ty=>((c&&sq)?shuf(base):base).filter(x=>(x.type||'mcq')===ty)).map(x=>{
+  const sh=so&&!(keep0&&c===0);
+  if(x.type==='tf')return{t:'tf',q:x.q,items:sh?shuf(x.items):x.items};
+  if(x.type==='sa')return{t:'sa',q:x.q,key:x.key||''};
+  if(x.type==='es')return{t:'es',q:x.q};
+  const o=(sh?shuf:a=>a)(x.opts.map((t,i)=>({t,ok:i===x.ans})));
+  return{t:'mcq',q:x.q,opts:o.map(z=>z.t),ans:o.findIndex(z=>z.ok)}})}));
+}
+let TRI=[];
+$('#trf').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ const info=$('#trinfo');info.hidden=false;
+ if(!window.JSZip){info.textContent='Chưa tải được thư viện đọc Word. Hãy kiểm tra kết nối mạng rồi tải lại trang.';return}
+ try{
+  const ps=await docxParas(f),r=readMcq(ps),x=readRest(ps);
+  TRI=parse('Bài: x\nMức: TH\n\n'+r.text+'\n\n'+x.text);
+  const c={};TRI.forEach(q=>{const t=q.type||'mcq';c[t]=(c[t]||0)+1});
+  info.textContent=`Đọc được ${TRI.length} câu: `+ORD.filter(t=>c[t]).map(t=>`${TY[t]} ${c[t]}`).join(', ')+'.'+(r.miss?` Có ${r.miss} câu trắc nghiệm chưa thấy đáp án màu đỏ nên bị bỏ qua.`:'');
+  $('#trgo').disabled=!TRI.length;
+ }catch(_){info.textContent='Không đọc được file Word này.'}
+};
+$('#trgo').onclick=()=>{
+ EX={mon:$('#trmon').value,lop:$('#trlop').value,title:$('#trt').value.trim()||'Đề kiểm tra',time:+$('#trm').value||45,codes:buildCodes(TRI,Math.max(1,Math.min(8,+$('#trn').value||1)),$('#trq').checked,$('#tro').checked,true)};
+ $('#bexp').onclick();
+};
+
+/* ---- Chuyển đổi ---- */
+async function docxLines(f){
+ const z=await JSZip.loadAsync(await f.arrayBuffer()),W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+ const d=new DOMParser().parseFromString(await z.file('word/document.xml').async('string'),'application/xml'),out=[];
+ const txt=n=>[...n.getElementsByTagNameNS(W,'t')].map(t=>t.textContent).join('');
+ const para=p=>{
+  const rs=[...p.getElementsByTagNameNS(W,'r')].filter(r=>txt(r).trim());
+  const t=rs.map(txt).join('').split(/\s+/).join(' ').trim();if(!t)return;
+  const st=p.getElementsByTagNameNS(W,'pStyle')[0],sv=st?st.getAttributeNS(W,'val')||'':'';
+  const bold=rs.length>0&&rs.every(r=>{const b=r.getElementsByTagNameNS(W,'b')[0];return !!b&&!['0','false'].includes(b.getAttributeNS(W,'val'))});
+  out.push({t,h:/^(heading|title|tiêu|tieu)/i.test(sv)||(t.length<90&&(bold||/^(Bài|Hoạt động|HOẠT ĐỘNG|[IVX]+\.|\d+\.)\s/.test(t)))});
+ };
+ [...d.getElementsByTagNameNS(W,'body')[0].children].forEach(c=>{
+  if(c.localName==='p')para(c);
+  if(c.localName==='tbl')[...c.getElementsByTagNameNS(W,'tr')].forEach(tr=>{const t=[...tr.getElementsByTagNameNS(W,'tc')].map(tc=>txt(tc).trim()).filter(Boolean).join(' | ');if(t)out.push({t,h:false})});
+ });
+ return out;
+}
+$('#w2p').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ if(!window.JSZip||!window.PptxGenJS){say('Chưa tải được thư viện. Hãy kiểm tra kết nối mạng rồi tải lại trang.',1);return}
+ try{
+  const L=await docxLines(f);if(!L.length){say('File Word không có chữ để chuyển.',1);return}
+  const p=new PptxGenJS(),BG='0B6B8A',FT='Arial',name=f.name.replace(/\.docx$/i,'');p.layout='LAYOUT_16x9';
+  const C=p.addSlide();C.background={color:BG};C.addText(name,{x:0.6,y:1.8,w:8.8,h:1.8,fontFace:FT,fontSize:38,bold:true,color:'FFFFFF',fit:'shrink'});
+  const slide=(t,ls)=>{
+   const s=p.addSlide();s.addShape(p.ShapeType.rect,{x:0,y:0,w:10,h:0.9,fill:{color:BG}});
+   s.addText(t,{x:0.4,y:0.1,w:9.2,h:0.7,fontFace:FT,fontSize:24,bold:true,color:'FFFFFF',fit:'shrink'});
+   if(ls.length)s.addText(ls.map(x=>({text:x.replace(/^[-+•]\s*/,''),options:{bullet:true,breakLine:true}})),{x:0.5,y:1.3,w:9,h:3.9,fontFace:FT,fontSize:20,color:'16222B',valign:'top',fit:'shrink'});
+  };
+  let title=name,body=[],n=0;
+  const flush=()=>{if(!body.length&&title===name)return;for(let i=0;i<Math.max(1,Math.ceil(body.length/7));i++){slide(title+(i?' (tiếp)':''),body.slice(i*7,i*7+7));n++}body=[]};
+  L.forEach(x=>{if(x.h){flush();title=x.t}else body.push(x.t)});
+  flush();
+  await dlsave(name+'.pptx',await p.write({outputType:'blob'}));
+  say(`Đã tạo ${n} slide từ file Word.`);
+ }catch(_){say('Không chuyển được file Word này.',1)}
+};
+$('#p2w').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ if(!window.pdfjsLib||!window.docx){say('Chưa tải được thư viện. Hãy kiểm tra kết nối mạng rồi tải lại trang.',1);return}
+ try{
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const pdf=await pdfjsLib.getDocument({data:new Uint8Array(await f.arrayBuffer())}).promise,pages=[];
+  for(let i=1;i<=pdf.numPages;i++){
+   const tc=await(await pdf.getPage(i)).getTextContent(),ls=[];let y=null,line='';
+   tc.items.forEach(it=>{const yy=Math.round(it.transform[5]);if(y!==null&&Math.abs(yy-y)>3){ls.push(line.trim());line=''}y=yy;line+=it.str});
+   ls.push(line.trim());
+   const out=[];ls.filter(Boolean).forEach(l=>{const pr=out[out.length-1];if(pr&&!/[.:;?!)]$/.test(pr)&&/^[a-zàáảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]/.test(l))out[out.length-1]=pr+' '+l;else out.push(l)});
+   pages.push(out);
+  }
+  if(!pages.some(x=>x.length)){say('File PDF này không có chữ chọn được (có thể là bản scan), nên chưa chuyển được.',1);return}
+  const {Document,Paragraph,TextRun,Packer,PageBreak}=window.docx,k=[];
+  pages.forEach((pg,i)=>{if(i)k.push(new Paragraph({children:[new PageBreak()]}));pg.forEach(l=>k.push(new Paragraph({spacing:{after:80},children:[new TextRun(l)]})))});
+  const doc=new Document({styles:{default:{document:{run:{font:'Times New Roman',size:26}}}},sections:[{children:k}]});
+  await dlsave(f.name.replace(/\.pdf$/i,'')+'.docx',await Packer.toBlob(doc));
+  say(`Đã chuyển ${pdf.numPages} trang PDF thành file Word (chỉ phần chữ).`);
+ }catch(_){say('Không đọc được file PDF này.',1)}
+};
+
+/* ---- Chương trình ---- */
+let PP=[];
+const SEED9=['Bài 2. Động năng. Thế năng','Bài 3. Cơ năng','Bài 4. Công và công suất','Bài 5. Khúc xạ ánh sáng','Bài 6. Phản xạ toàn phần','Bài 7. Lăng kính','Bài 8. Thấu kính','Bài 9. Thực hành đo tiêu cự của thấu kính hội tụ','Bài 10. Kính lúp. Bài tập thấu kính','Bài 11. Điện trở. Định luật Ohm','Bài 12. Đoạn mạch nối tiếp, song song','Bài 13. Năng lượng của dòng điện và công suất điện','Bài 14. Cảm ứng điện từ. Nguyên tắc tạo ra dòng điện xoay chiều','Bài 15. Tác dụng của dòng điện xoay chiều','Bài 16. Vòng năng lượng trên Trái Đất. Năng lượng hóa thạch','Bài 17. Một số dạng năng lượng tái tạo'];
+try{const s=localStorage.getItem('vl_pp');PP=s?JSON.parse(s):SEED9.map(b=>({id:uid(),mon:'Vật Lí',lop:'9',bai:b,tuan:b.startsWith('Bài 8.')?'7, 8':'',tiet:b.startsWith('Bài 8.')?'16, 17, 18':''}))}catch(e){}
+const pstore=()=>{try{localStorage.setItem('vl_pp',JSON.stringify(PP))}catch(e){}};
+const pick=g=>`<label class='fld'>Chọn bài theo sách giáo khoa và phân phối chương trình<select id='gpick'><option value=''>Chọn bài...</option>${PP.filter(r=>r.mon===(g.mon||'Vật Lí')&&r.lop===(g.lop||'6')).map(r=>`<option value="${r.id}">${esc(r.bai)}${r.tiet?' (tiết '+esc(r.tiet)+')':''}</option>`).join('')}</select></label>`;
+function renderPP(){
+ const L=PP.filter(r=>r.mon===$('#pm').value&&r.lop===$('#pk').value);
+ $('#plist').innerHTML=L.length?L.map(r=>`<div class="q"><div class="two"><label class="fld">Bài<input data-i="${r.id}" data-f="bai" value="${esc(r.bai)}"></label><div class="two"><label class="fld">Tuần<input data-i="${r.id}" data-f="tuan" value="${esc(r.tuan||'')}"></label><label class="fld">Tiết<input data-i="${r.id}" data-f="tiet" value="${esc(r.tiet||'')}"></label></div></div><div class="meta"><span class="sp"></span><button class="btn sm del" data-d="${r.id}">Xóa</button></div></div>`).join(''):'<div class="empty">Chưa có bài nào cho môn và khối này. Thêm từng bài hoặc dán danh sách từ phân phối chương trình của trường.</div>';
+}
+$('#pm').onchange=$('#pk').onchange=renderPP;
+$('#plist').addEventListener('change',e=>{const r=PP.find(x=>x.id===e.target.dataset.i);if(!r)return;r[e.target.dataset.f]=e.target.value.trim();pstore();say('Đã lưu.')});
+$('#plist').addEventListener('click',e=>{const d=e.target.dataset.d;if(!d)return;PP=PP.filter(x=>x.id!==d);pstore();renderPP()});
+$('#padd').onclick=()=>{const b=$('#pa').value.trim();if(!b){say('Cần nhập tên bài.',1);return}PP.push({id:uid(),mon:$('#pm').value,lop:$('#pk').value,bai:b,tuan:$('#pt').value.trim(),tiet:$('#pi').value.trim()});pstore();$('#pa').value=$('#pt').value=$('#pi').value='';renderPP();say('Đã thêm bài.')};
+$('#pgo').onclick=()=>{
+ const rows=$('#pimp').value.split(/\r?\n/).map(l=>l.split(/\t|\||;/).map(s=>s.trim())).filter(c=>c[0]);
+ if(!rows.length){say('Chưa có dòng nào để nhập.',1);return}
+ rows.forEach(c=>PP.push({id:uid(),mon:$('#pm').value,lop:$('#pk').value,bai:c[0],tuan:c[1]||'',tiet:c[2]||''}));
+ pstore();$('#pimp').value='';renderPP();say(`Đã nhập ${rows.length} bài cho ${$('#pm').value} lớp ${$('#pk').value}.`);
+};
+
+/* ---- Đề cương ---- */
+$('#bdc').onclick=async()=>{
+ const d=window.docx;if(!d){say('Chưa tải được thư viện Word. Hãy kiểm tra kết nối mạng rồi tải lại trang.',1);return}
+ const f=filt();if(!f.length){say('Không có câu hỏi nào để xuất. Hãy chỉnh bộ lọc.',1);return}
+ const {Document,Paragraph,TextRun,Packer,AlignmentType}=d,k=[],RD='FF0000';
+ const P=(runs,al,ind)=>new Paragraph({alignment:al,spacing:{after:80},indent:ind,children:runs});
+ const T=(t,b,c)=>new TextRun({text:t,bold:!!b,color:c});
+ const sub=[$('#fm').value,$('#fk').value&&'Lớp '+$('#fk').value,$('#fb').value].filter(Boolean).join(' - ');
+ k.push(P([T('ĐỀ CƯƠNG ÔN TẬP'+(sub?' - '+sub.toUpperCase():''),1)],AlignmentType.CENTER));
+ ORD.forEach(ty=>{
+  const L=f.filter(x=>(x.type||'mcq')===ty);if(!L.length)return;
+  k.push(P([T(SEC[ty],1)]));
+  L.forEach((x,i)=>{
+   const ls=x.q.split('\n'),ind={left:360};
+   k.push(P([T('Câu '+(i+1)+'. ',1),T(ls[0])]),...ls.slice(1).map(s=>P([T(s)],undefined,ind)));
+   if(ty==='mcq')x.opts.forEach((o,j)=>k.push(P([T(L4[j]+'. '+o,j===x.ans,j===x.ans?RD:undefined)],undefined,ind)));
+   if(ty==='tf')x.items.forEach((o,j)=>k.push(P([T(ABC[j]+') '+o.t),T(o.ok?'  [Đúng]':'  [Sai]',1,RD)],undefined,ind)));
+   if(ty==='sa')k.push(P([T('Đáp số: ',1),T(x.key||'..........',0,RD)],undefined,ind));
+  });
+ });
+ try{
+  const doc=new Document({styles:{default:{document:{run:{font:'Times New Roman',size:26}}}},sections:[{children:k}]});
+  await dlsave('De-cuong-on-tap.docx',await Packer.toBlob(doc));
+ }catch(_){say('Không tạo được file Word.',1)}
+};
+
+/* ---- Giáo án ---- */
+let GA=[],AI=true,gid=null,gcur={};
+try{GA=JSON.parse(localStorage.getItem('vl_ga')||'[]');AI=localStorage.getItem('vl_ai')!=='0'}catch(e){}
+const gstore=()=>{try{localStorage.setItem('vl_ga',JSON.stringify(GA))}catch(e){}};
+const STEP=[['b1','Bước 1: GV chuyển giao nhiệm vụ học tập'],['b2','Bước 2: HS thực hiện nhiệm vụ học tập'],['b3','Bước 3: Báo cáo kết quả hoạt động và thảo luận'],['b4','Bước 4: Đánh giá kết quả, thực hiện nhiệm vụ học tập']];
+const ACT=[['m','a. Mục tiêu'],['n','b. Nội dung'],['s','c. Sản phẩm học tập'],...STEP];
+const mk=(p,fs)=>fs.map(([k,l])=>[p+k,l]);
+const blocks=g=>[
+ ['I. Mục tiêu',[['kt','1. Về kiến thức'],['nlc','2a. Năng lực chung'],['nlr',g.mon==='Công nghệ'?'2b. Năng lực công nghệ':'2b. Năng lực khoa học tự nhiên'],['pc','3. Phẩm chất']]],
+ ['II. Thiết bị dạy học và học liệu',[['tbgv','1. Đối với giáo viên'],['tbhs','2. Đối với học sinh']]],
+ ['III.1 Hoạt động khởi động',mk('kd_',ACT)],
+ ...[...Array(g.nh||1)].map((_,i)=>['III.2 Hình thành kiến thức, hoạt động '+(i+1),[['h'+i+'_ten','Tên hoạt động'],...mk('h'+i+'_',ACT)]]),
+ ['III.3 Hoạt động luyện tập',mk('lt_',ACT)],['III.4 Hoạt động vận dụng',mk('vd_',ACT)],['Hướng dẫn về nhà',[['hn','Hướng dẫn về nhà']]]];
+const gget=()=>{const o={...gcur};$$('#gf [data-k]').forEach(el=>o[el.dataset.k]=el.value.trim());return o};
+const fld=(k,l,h)=>k.endsWith('_ten')?`<label class='fld'>${l}<input data-k='${k}'></label>`:`<label class='fld'>${l}<textarea data-k='${k}' rows='3'></textarea></label>`+(AI?`<div class='bar'><button class='btn sm' data-ai='${k}' data-l='${esc(h+' - '+l)}'>Gợi ý bằng AI</button></div>`:'');
+function renderForm(){
+ const g=gcur,sel=(k,l,os)=>`<label class='fld'>${l}<select data-k='${k}'>${os.map(o=>`<option>${o}</option>`).join('')}</select></label>`,inp=(k,l)=>`<label class='fld'>${l}<input data-k='${k}'></label>`;
+ $('#gf').innerHTML=`<div class='two'>${sel('mon','Môn',['Vật Lí','Công nghệ'])}${sel('lop','Khối lớp',['6','7','8','9'])}</div><div class='two'>${inp('to','Tổ')}${inp('gv','Giáo viên')}</div>${pick(g)}<div class='two'>${inp('tuan','Tuần')}${inp('tiet','Tiết')}</div>${inp('title','Tên bài (ví dụ: Bài 8: Thấu kính)')}`
+ +blocks(g).map(([h,fs])=>`<h3>${h}</h3>`+fs.map(([k,l])=>fld(k,l,h)).join('')).join('')
+ +`<div class='bar'><button class='btn' id='hadd'>Thêm hoạt động hình thành kiến thức</button>${(g.nh||1)>1?`<button class='btn del' id='hdel'>Bớt hoạt động cuối</button>`:''}</div>`;
+ $$('#gf [data-k]').forEach(el=>el.value=g[el.dataset.k]||(el.options?el.options[0].value:''));
+ if(g.pick&&$('#gpick'))$('#gpick').value=g.pick;
+}
+function openGa(g){gid=g?g.id:null;gcur=g?{...g}:{mon:$('#gfm').value||'Vật Lí',lop:$('#gfl').value||'9',nh:1};renderForm();$('#gl').hidden=true;$('#ge').hidden=false}
+function renderGa(){
+ const fm=$('#gfm').value,fl=$('#gfl').value,L=GA.filter(g=>(!fm||g.mon===fm)&&(!fl||g.lop===fl));
+ $('#gcnt').textContent=GA.length?`${L.length}/${GA.length} giáo án`:'';
+ const row=g=>`<div class='q'><p>${esc(g.title)}</p><div class='meta'><span>${esc([g.mon,g.tiet?'Tiết '+g.tiet:'',g.tuan?'Tuần '+g.tuan:''].filter(Boolean).join(' · '))}</span><span class='sp'></span><button class='btn sm' data-a='e' data-id='${g.id}'>Sửa</button><button class='btn sm' data-a='c' data-id='${g.id}'>Nhân bản</button><button class='btn sm del' data-a='d' data-id='${g.id}'>Xóa</button></div></div>`;
+ const ks=[...new Set(L.map(g=>g.lop||''))].sort();
+ $('#glist').innerHTML=L.length?ks.map(k=>`<h3>${k?'Lớp '+k:'Chưa chọn khối'}</h3>`+L.filter(g=>(g.lop||'')===k).map(row).join('')).join(''):GA.length?'<div class="empty">Không có giáo án nào khớp bộ lọc.</div>':'<div class="empty">Chưa có giáo án. Bấm Soạn giáo án mới để bắt đầu, hoặc nhân bản một bài cũ khi dạy lại.</div>';
+}
+$('#gfm').onchange=$('#gfl').onchange=renderGa;
+$('#gnew').onclick=()=>openGa(null);
+$('#gback').onclick=()=>{clearTimeout(gt);gq();$('#ge').hidden=true;$('#gl').hidden=false;renderGa()};
+$('#glist').addEventListener('click',e=>{
+ const id=e.target.dataset.id,a=e.target.dataset.a;if(!id)return;const g=GA.find(x=>x.id===id);
+ if(a==='e')openGa(g);
+ if(a==='c'){GA.push({...g,id:uid(),title:g.title+' (bản sao)'});gstore();renderGa()}
+ if(a==='d'){GA=GA.filter(x=>x.id!==id);gstore();renderGa();say('Đã xóa giáo án.')}
+});
+$('#gf').addEventListener('change',e=>{
+ const k=e.target.dataset.k;
+ if(k==='mon'||k==='lop'){gcur=gget();gcur.pick='';renderForm()}
+ if(e.target.id==='gpick'){const r=PP.find(x=>x.id===e.target.value);gcur=gget();gcur.pick=e.target.value;if(r){gcur.title=r.bai;gcur.tuan=r.tuan||'';gcur.tiet=r.tiet||''}renderForm()}
+});
+const gq=()=>{const o=gget();if(!o.title)return;o.id=gid||uid();gid=o.id;gcur=o;const i=GA.findIndex(x=>x.id===o.id);i<0?GA.push(o):GA[i]=o;gstore()};
+let gt=null;$('#gf').addEventListener('input',()=>{clearTimeout(gt);gt=setTimeout(()=>{gq();say('Đã tự lưu.')},1500)});
+$('#gsave').onclick=()=>{
+ const o=gget();if(!o.title){say('Cần nhập tên bài.',1);return}
+ o.id=gid||uid();gid=o.id;gcur=o;const i=GA.findIndex(x=>x.id===o.id);i<0?GA.push(o):GA[i]=o;gstore();say('Đã lưu giáo án.');
+};
+const mkPrompt=(o,l)=>`Bạn là giáo viên ${o.mon||'Vật Lí'} THCS giàu kinh nghiệm. Hãy viết nháp mục “${l}” của kế hoạch bài dạy theo chương trình GDPT 2018.\nBài: ${o.title}. Khối lớp: ${o.lop||'chưa rõ'}. Tiết: ${o.tiet||'chưa rõ'}.\nMục tiêu kiến thức đã có: ${o.kt||'chưa có'}.\nYêu cầu: ngắn gọn, chính xác về kiến thức, gạch đầu dòng bằng dấu gạch ngang, chỉ trả về nội dung của mục này, không viết tiêu đề.`;
+$('#gf').addEventListener('click',async e=>{
+ const id=e.target.id;
+ if(id==='hadd'||id==='hdel'){gcur=gget();gcur.nh=Math.max(1,(gcur.nh||1)+(id==='hadd'?1:-1));renderForm();return}
+ const k=e.target.dataset.ai;if(!k)return;
+ const ta=$('#gf [data-k='+k+']'),o=gget(),btn=e.target;
+ if(!o.title){say('Nhập tên bài trước khi nhờ AI gợi ý.',1);return}
+ const toCopy=()=>{aiTarget=ta;$('#aip').value=mkPrompt(o,btn.dataset.l);$('#air').value='';$('#dai').showModal()};
+ if($('#aiMode').value==='copy'){toCopy();return}
+ if($('#aiMode').value==='gemini'){
+  let key='',model='';try{key=(localStorage.getItem('vl_gkey')||'').trim();model=(localStorage.getItem('vl_gmodel')||'gemini-3.5-flash-lite').trim()}catch(_){}
+  if(!key){say('Chưa nhập khóa Gemini trong tab Cài đặt.',1);toCopy();return}
+  btn.disabled=true;btn.textContent='Đang viết...';
+  try{
+   const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(model)+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({contents:[{parts:[{text:mkPrompt(o,btn.dataset.l)}]}]})});
+   const j=await r.json(),t=((j.candidates||[])[0]||{}).content?j.candidates[0].content.parts.map(p=>p.text||'').join('').trim():'';
+   if(!r.ok||!t)throw new Error((j.error&&j.error.message)||'không có nội dung');
+   const c=ta.value.trim();ta.value=c?c+'\n\n'+t:t;ta.dispatchEvent(new Event('input',{bubbles:true}));say('AI đã viết nháp. Hãy đọc lại và sửa trước khi dùng.');
+  }catch(err){say('Gemini chưa trả lời được ('+String(err.message||err).slice(0,120)+'). Có thể dùng cách sao chép lời nhắc.',1);toCopy()}
+  btn.disabled=false;btn.textContent='Gợi ý bằng AI';return
+ }
+ const sm=window.claude?await window.claude.use('sample'):null;
+ if(!sm){toCopy();return}
+ btn.disabled=true;btn.textContent='Đang viết...';
+ try{
+  const r=await sm(mkPrompt(o,btn.dataset.l),{cache:false});
+  const t=ta.value.trim();ta.value=t?t+'\n\n'+r.text.trim():r.text.trim();
+  say('AI đã viết nháp. Hãy đọc lại và sửa trước khi dùng.');
+ }catch(err){say(err&&err.code==='rate_limited'?'Gọi AI quá nhanh, hãy thử lại sau ít phút.':'Không nhờ được AI lúc này. Cô có thể dùng cách sao chép lời nhắc.',1);toCopy()}
+ btn.disabled=false;btn.textContent='Gợi ý bằng AI';
+});
+$('#gexp').onclick=async()=>{
+ const d=window.docx;if(!d){say('Chưa tải được thư viện Word. Hãy kiểm tra kết nối mạng rồi tải lại trang.',1);return}
+ const o=gget(),{Document,Paragraph,TextRun,Packer,AlignmentType}=d,k=[];
+ const R=(t,b,i)=>new TextRun({text:t,bold:!!b,italics:!!i});
+ const P=(t,b,al,ind)=>new Paragraph({alignment:al,spacing:{after:80},indent:ind,children:[R(t,b)]});
+ const H=t=>P(t,1),TX=t=>(t||'').split('\n').map(s=>P(s,0,undefined,{left:360}));
+ const LB=(l,t)=>{const ls=(t||'').split('\n');return [new Paragraph({spacing:{after:80},children:[R(l+' ',1),R(ls[0])]}),...ls.slice(1).map(s=>P(s))]};
+ const act=p=>{k.push(...LB('a. Mục tiêu:',o[p+'m']),...LB('b. Nội dung:',o[p+'n']),...LB('c. Sản phẩm học tập:',o[p+'s']),H('d. Tổ chức thực hiện:'));STEP.forEach(([s,l])=>k.push(H(l),...TX(o[p+s])))};
+ k.push(H(`Tổ: ${o.to||'........'}      GV: ${o.gv||'........'}`),H(`Tuần ${o.tuan||'...'}`),H(`Tiết ${o.tiet||'...'}`),P((o.title||'').toUpperCase(),1,AlignmentType.CENTER));
+ k.push(H('I. MỤC TIÊU'),H('1. Về kiến thức'),new Paragraph({spacing:{after:80},children:[R('Sau bài học này, HS sẽ:',0,1)]}),...TX(o.kt),H('2. Về năng lực'),H('a. Năng lực chung:'),...TX(o.nlc),H(o.mon==='Công nghệ'?'b. Năng lực công nghệ:':'b. Năng lực khoa học tự nhiên:'),...TX(o.nlr),H('3. Phẩm chất'),...TX(o.pc));
+ k.push(H('II. THIẾT BỊ DẠY HỌC VÀ HỌC LIỆU'),H('1. Đối với giáo viên'),...TX(o.tbgv),H('2. Đối với học sinh'),...TX(o.tbhs),H('III. TIẾN TRÌNH DẠY HỌC'),H('1. HOẠT ĐỘNG KHỞI ĐỘNG'));
+ act('kd_');k.push(H('2. HOẠT ĐỘNG HÌNH THÀNH KIẾN THỨC'));
+ for(let i=0;i<(o.nh||1);i++){k.push(H(`Hoạt động ${i+1}. ${o['h'+i+'_ten']||''}`));act('h'+i+'_')}
+ k.push(H('3. HOẠT ĐỘNG LUYỆN TẬP'));act('lt_');
+ k.push(H('4. HOẠT ĐỘNG VẬN DỤNG'));act('vd_');
+ k.push(H('* HƯỚNG DẪN VỀ NHÀ'),...TX(o.hn));
+ try{
+  const doc=new Document({styles:{default:{document:{run:{font:'Times New Roman',size:26}}}},sections:[{children:k}]});
+  await dlsave('Giao-an-'+(o.title||'bai').replace(/[^\p{L}\p{N}]+/gu,'-')+'.docx',await Packer.toBlob(doc));
+ }catch(_){say('Không tạo được file Word.',1)}
+};
+$('#gppt').onclick=async()=>{
+ if(!window.PptxGenJS){say('Chưa tải được thư viện PowerPoint. Hãy kiểm tra kết nối mạng rồi tải lại trang.',1);return}
+ const o=gget(),p=new PptxGenJS(),BG='0B6B8A',FT='Arial';p.layout='LAYOUT_16x9';
+ const T=p.addSlide();T.background={color:BG};
+ T.addText(o.title||'Bài giảng',{x:0.6,y:1.4,w:8.8,h:1.6,fontFace:FT,fontSize:38,bold:true,color:'FFFFFF',fit:'shrink'});
+ T.addText([o.mon,o.lop&&'Lớp '+o.lop,o.tiet&&'Tiết '+o.tiet].filter(Boolean).join(' · ')+(o.gv?'\nGV: '+o.gv:''),{x:0.6,y:3.2,w:8.8,h:1,fontFace:FT,fontSize:20,color:'DDEEF5'});
+ const add=(t,body,sub)=>{
+  const s=p.addSlide();s.addShape(p.ShapeType.rect,{x:0,y:0,w:10,h:0.9,fill:{color:BG}});
+  s.addText(t,{x:0.4,y:0.1,w:9.2,h:0.7,fontFace:FT,fontSize:24,bold:true,color:'FFFFFF',fit:'shrink'});
+  if(sub)s.addText(sub,{x:0.4,y:1.0,w:9.2,h:0.4,fontFace:FT,fontSize:14,color:'5A6B78'});
+  const ls=(body||'').split('\n').map(x=>x.trim()).filter(Boolean);
+  s.addText(ls.length?ls.map(x=>({text:x.replace(/^[-+•]\s*/,''),options:{bullet:true,breakLine:true}})):[{text:'(chưa có nội dung)',options:{color:'999999'}}],{x:0.5,y:1.5,w:9,h:3.7,fontFace:FT,fontSize:20,color:'16222B',valign:'top',fit:'shrink'});
+ };
+ add('Mục tiêu bài học',o.kt);
+ const acts=[['Hoạt động khởi động','kd_']];
+ for(let i=0;i<(o.nh||1);i++)acts.push(['Hoạt động '+(i+1)+': '+(o['h'+i+'_ten']||'Hình thành kiến thức'),'h'+i+'_']);
+ acts.push(['Luyện tập','lt_'],['Vận dụng','vd_']);
+ acts.forEach(([t,pre])=>{add(t,o[pre+'n'],'Nội dung');if(o[pre+'s'])add(t,o[pre+'s'],'Sản phẩm, gợi ý đáp án')});
+ if(o.hn)add('Hướng dẫn về nhà',o.hn);
+ try{await dlsave('Bai-giang.pptx',await p.write({outputType:'blob'}))}catch(_){say('Không tạo được file PowerPoint.',1)}
+};
+let aiTarget=null;
+try{$('#aiMode').value=localStorage.getItem('vl_aimode')||'auto'}catch(e){}
+$('#aiMode').onchange=e=>{try{localStorage.setItem('vl_aimode',e.target.value)}catch(_){}};
+try{$('#gkey').value=localStorage.getItem('vl_gkey')||'';$('#gmodel').value=localStorage.getItem('vl_gmodel')||'gemini-3.5-flash-lite'}catch(e){}
+$('#gkey').onchange=e=>{try{localStorage.setItem('vl_gkey',e.target.value.trim())}catch(_){}};
+$('#gmodel').onchange=e=>{try{localStorage.setItem('vl_gmodel',e.target.value.trim())}catch(_){}};
+$('#aix').onclick=()=>$('#dai').close();
+$('#aicp').onclick=async()=>{try{await navigator.clipboard.writeText($('#aip').value);say('Đã sao chép lời nhắc.')}catch(_){$('#aip').select();say('Không tự sao chép được. Hãy giữ chữ trong khung rồi chọn Sao chép.',1)}};
+$('#aiin').onclick=()=>{const t=$('#air').value.trim();if(!t||!aiTarget)return;const c=aiTarget.value.trim();aiTarget.value=c?c+'\n\n'+t:t;aiTarget.dispatchEvent(new Event('input',{bubbles:true}));$('#dai').close();say('Đã chèn. Hãy đọc lại và sửa trước khi dùng.')};
+$('#aiOn').checked=AI;
+$('#aiOn').onchange=e=>{AI=e.target.checked;try{localStorage.setItem('vl_ai',AI?'1':'0')}catch(_){}};
+
+/* ---- Tab ---- */
+$$('.tabs button').forEach(b=>b.onclick=()=>{
+ $$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+ ['kho','mk','tr','pp','ga','cv','bk'].forEach(id=>$('#'+id).hidden=id!==b.dataset.t);say('');
+ if(b.dataset.t==='mk')renderMx();
+ if(b.dataset.t==='ga')renderGa();
+ if(b.dataset.t==='pp')renderPP();
+});
+renderBank();
+})();
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
